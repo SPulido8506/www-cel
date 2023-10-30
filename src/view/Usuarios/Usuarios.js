@@ -5,16 +5,16 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-const Empleados = () => {
+const Usuarios = () => {
   return (
     <Content>
-      <h1>Empleados</h1>
-      <a href="/empleados-add">
+      <h1>Usuarios</h1>
+      <a href="/usuarios-add">
         <Button variant="contained" startIcon={<PersonAddIcon />}>
-          Agregar empleado
+          Agregar usuario
         </Button>
       </a>
     </Content>
   );
 };
-export default Empleados;
+export default Usuarios;
