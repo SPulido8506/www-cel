@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Content from "../../components/Content";
 import axios from "axios";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 // Librerias GRID
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import { useNavigate } from "react-router-dom";
 // LIBRERIAS DE ICONOS
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
@@ -19,6 +22,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 // LIBRERIAS FORMULARIOS
 import { useFormControl } from "@mui/material/FormControl";
+import EmpleadoService from "../../services/EmpleadoService";
 import {
   FormControl,
   FormLabel,
@@ -35,39 +39,102 @@ import {
 } from "@mui/material";
 import { Form } from "react-router-dom";
 const EmpleadosAdd = () => {
+  const [fechaent, setFechaen] = useState("");
   const [nombre, setNombre] = useState("");
   const [apPaterno, setApPaterno] = useState("");
   const [apMaterno, setApMaterno] = useState("");
+  const [fechan, setfechan]=useState("");
   const [sexo, setsexo] = useState("");
   const [estadoc, setestadoc] = useState("");
   const [escolaridad, setescolaridad] = useState("");
-  const [tipoe, settipoe] = useState("");
+  const [nacimiento, setnacimiento] = useState("");
+  const [calle, setcalle] = useState("");
+  const [numero, setnumero] = useState("");
+  const [colonia, setcolonia] = useState("");
+  const [ciudad, setciudad] = useState("");
+  const [estado, setestado] = useState("");
+  const [curp, setcurp] = useState("");
+  const [rfc, setrfc] = useState("");
+  const [nss, setnss] = useState("");
+  const [departamento, setdepartamento] = useState("");
+  const [puesto, setpuesto] = useState("");
+  const [telefono, settelefono] = useState("");
+  const [email, setemail] = useState("");
+  const [estatus, setestatus] = useState("");
+  const [tipoe, settipoe] = useState("");  
+  const navigate = useNavigate();
+  const handlefechaen = (event) => {
+    this.setFechaen(event.target.value);
+  };
   const handleNombre = (event) => {
-    this.setNombre(event.target.value);
+    setNombre(event.target.value);
   };
   const handleApellidoP = (event) => {
-    this.setApPaterno(event.target.value);
+    setApPaterno(event.target.value);
   };
   const handleApellidoM = (event) => {
-    this.setApMaterno(event.target.value);
+    setApMaterno(event.target.value);
   };
   const handlefechan = (event) => {
-    this.setApMaterno(event.target.value);
+    setfechan(event.target.value);
   };
   const handlesexo = (event) => {
-    this.setsexo(event.target.value);
+    setsexo(event.target.value);
   };
   const handleestadoc = (event) => {
-    this.setestadoc(event.target.value);
+    setestadoc(event.target.value);
   };
   const handleescolaridad = (event) => {
-    this.setescolaridad(event.target.value);
+    setescolaridad(event.target.value);
+  };
+  const handlenacimiento = (event) => {
+    setnacimiento(event.target.value);
+  };
+  const handlecalle = (event) => {
+    setcalle(event.target.value);
+  };
+  const handlenumero = (event) => {
+    setnumero(event.target.value);
+  };
+  const handlecolonia = (event) => {
+    setcolonia(event.target.value);
+  };
+  const handleciudad = (event) => {
+    setciudad(event.target.value);
+  };
+  const handleestado = (event) => {
+    setestado(event.target.value);
+  };
+  const handlecurp = (event) => {
+    setcurp(event.target.value);
+  };
+  const handlerfc = (event) => {
+    setrfc(event.target.value);
+  };
+  const handlenss = (event) => {
+    setnss(event.target.value);
+  };
+  const handledepartamento = (event) => {
+    setdepartamento(event.target.value);
+  };
+  const handlepuesto = (event) => {
+    setpuesto(event.target.value);
+  };
+  const handletelefono = (event) => {
+    settelefono(event.target.value);
+  };
+  const handleemail = (event) => {
+    setemail(event.target.value);
+  };
+  const handleestatus = (event) => {
+    setestatus(event.target.value);
   };
   const handletipoe = (event) => {
-    this.settipoe(event.target.value);
+    settipoe(event.target.value);
   };
-  const handleSumbit = (event) => {
-    const empleados = {
+  const handleSubmit = (event) => {
+    let empleados = {
+      fechaent: this.state.fechaent,
       nombre: this.state.nombre,
       apellidoP: this.state.apellidoP,
       apellidoM: this.state.apellidoM,
@@ -75,14 +142,38 @@ const EmpleadosAdd = () => {
       sexo: this.state.sexo,
       estadoc: this.state.estadoc,
       escolaridad: this.state.escolaridad,
-      cveCarrera: this.state.cveCarrera,
+      nacimiento: this.state.nacimiento,
+      calle: this.state.calle,
+      numero: this.state.numero,
+      colonia: this.state.colonia,
+      ciudad: this.state.ciudad,
+      estado: this.state.estado,
+      curp: this.state.curp,
+      rfc: this.state.rfc,
+      nss: this.state.nss,
+      departamento: this.state.departamento,
+      puesto: this.state.puesto,
+      telefono: this.state.telefono,
+      email: this.state.email,
+      estatus: this.estate.estatus,
+      tipoe: this.estate.tipoe
     };
+    console.log(empleados);
+    EmpleadoService.createEmpleado(empleados);
   };
   return (
     <Content>
       <form>
         <h1>ALTA DE EMPLEADOS</h1>
         <Grid container spacing={2}>
+        <Grid item xs={1}></Grid>
+          <Grid item xs={2}>
+            <FormControl fullWidth>
+              <label>Fecha de entrada:</label>
+              <DatePicker selected={fechaent}  onChange={setFechaen}/>
+            </FormControl>
+          </Grid>
+          <Grid item xs={9}></Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={2}>
             <FormControl fullWidth>
@@ -90,7 +181,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Nombre"
                 id="nombre"
-                onChange="{handleNombre}"
+                onChange={handleNombre}
               />
             </FormControl>
           </Grid>
@@ -100,7 +191,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Apellido paterno"
                 id="apPaterno"
-                onChange="{handleApellidoP}"
+                onChange={handleApellidoP}
               />
             </FormControl>
           </Grid>
@@ -110,7 +201,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Apellido materno"
                 id="apMaterno"
-                onChange="{handleApellidoM}"
+                onChange={handleApellidoM}
               />{" "}
             </FormControl>
           </Grid>
@@ -118,7 +209,10 @@ const EmpleadosAdd = () => {
           <Grid item xs={1}></Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={2}>
-            
+          <FormControl fullWidth>
+            <label>Fecha de Nacimiento:</label>
+              <DatePicker selected={fechan} onChange={setfechan}/>
+            </FormControl>
           </Grid>
           <Grid item xs={2}>
             <FormControl fullWidth>
@@ -127,7 +221,7 @@ const EmpleadosAdd = () => {
                 labelId="sexo"
                 id="sexo"
                 name="sexo"
-                onChange="{handlesexo}"
+                onSelect={handlesexo}
               >
                 <MenuItem key="M" value="MASCULINO">
                   MASCULINO
@@ -148,13 +242,13 @@ const EmpleadosAdd = () => {
                 labelId="estadoc"
                 id="estadoc"
                 name="estadoc"
-                onChange="{handleestadoc}"
+                onSelect={handleestadoc}
               >
                 <MenuItem key="C" value="CASADO">
-                  MASCULINO
+                  Casado
                 </MenuItem>
                 <MenuItem key="S" value="SOLTERO">
-                  FEMENINO
+                  Soltero
                 </MenuItem>
                 <MenuItem key="D" value="DIVORCIADO(A)">
                   DIVORCIADO(A)
@@ -173,7 +267,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="escolaridad"
                 id="escolaridad"
-                onChange="{handleescolaridad}"
+                onChange={handleescolaridad}
               />
             </FormControl>
           </Grid><Grid item xs={3}>
@@ -182,7 +276,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Lugar nacimiento"
                 id="nacimiento"
-                onChange="{handlenacimiento}"
+                onChange={handlenacimiento}
               />
             </FormControl>
           </Grid>
@@ -194,7 +288,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Calle domicilio"
                 id="calle"
-                onChange="{handlecalle}"
+                onChange={handlecalle}
               />
             </FormControl>
           </Grid>
@@ -204,7 +298,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Número"
                 id="numero"
-                onChange="{handlenumero}"
+                onChange={handlenumero}
               />
             </FormControl>
           </Grid>
@@ -214,7 +308,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Colonia"
                 id="colonia"
-                onChange="{handlecolonia}"
+                onChange={handlecolonia}
               />
             </FormControl>
           </Grid>
@@ -226,7 +320,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Ciudad"
                 id="ciudad"
-                onChange="{handleciudad}"
+                onChange={handleciudad}
               />
             </FormControl>
           </Grid><Grid item xs={3}>
@@ -235,7 +329,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Estado"
                 id="estado"
-                onChange="{handleestado}"
+                onChange={handleestado}
               />
             </FormControl>
           </Grid>
@@ -247,7 +341,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Curp"
                 id="curp"
-                onChange="{handlecurp}"
+                onChange={handlecurp}
               />
             </FormControl>
           </Grid>
@@ -257,7 +351,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="RFC"
                 id="rfc"
-                onChange="{handlerfc}"
+                onChange={handlerfc}
               />
             </FormControl>
           </Grid>
@@ -267,7 +361,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="NSS"
                 id="nss"
-                onChange="{handlenss}"
+                onChange={handlenss}
               />
             </FormControl>
           </Grid>
@@ -280,7 +374,7 @@ const EmpleadosAdd = () => {
                 labelId="departamento"
                 id="departamento"
                 name="departamento"
-                onChange="{handledepartamento}"
+                onSelect={handledepartamento}
               >
                 <MenuItem key="1" value="Contabilidad">
                   Contabilidad
@@ -316,7 +410,7 @@ const EmpleadosAdd = () => {
                 labelId="puesto"
                 id="puesto"
                 name="puesto"
-                onChange="{handlepuesto}"
+                onSelect={handlepuesto}
               >
                 <MenuItem key="1" value="Auxiliar">
                   Auxiliar
@@ -337,8 +431,8 @@ const EmpleadosAdd = () => {
               <TextField
                 fullWidth
                 label="Telefono(10 díg)"
-                id="´telefono"
-                onChange="{handletelefono}"
+                id="telefono"
+                onChange={handletelefono}
               />
             </FormControl>
           </Grid>
@@ -348,7 +442,7 @@ const EmpleadosAdd = () => {
                 fullWidth
                 label="Correo electronico"
                 id="mail"
-                onChange="{handlemail}"
+                onChange={handleemail}
               />
             </FormControl>
           </Grid>
@@ -359,16 +453,16 @@ const EmpleadosAdd = () => {
                 labelId="estatus"
                 id="estatus"
                 name="estatus"
-                onChange="{handleestatus}"
+                onSelect={handleestatus}
               >
                 <MenuItem key="1" value="Activo">
-                  Auxiliar
+                  Activo
                 </MenuItem>
                 <MenuItem key="2" value="Inactivo">
-                  Jefe
+                  Inactivo
                 </MenuItem>
                 <MenuItem key="3" value="Licencia">
-                  Gerente
+                  Licencia
                 </MenuItem>
               </Select>
             </FormControl>
@@ -382,7 +476,7 @@ const EmpleadosAdd = () => {
                 labelId="tipoe"
                 id="tipoe"
                 name="tipoe"
-                onChange="{handletipoe}"
+                onSelect={handletipoe}
               >
                 <MenuItem key="1" value="QUINCENAL">
                   QUINCENAL
@@ -409,7 +503,7 @@ const EmpleadosAdd = () => {
               variant="contained"
               color="success"
               type="submit"
-              onClick="{handleSubmit}"
+              onClick={handleSubmit}
             >
               Guardar
             </Button>
