@@ -85,8 +85,7 @@ const UsuariosEdit = () => {
      
         <h1 >EDITAR DE USUARIOS</h1>
         <Grid container spacing={2}>
-        <Grid item xs={1}></Grid>
-          
+          <Grid item xs={1}></Grid>
           <Grid item xs={12}></Grid>
           <Grid item xs={4}></Grid>
           <Grid item xs={4}>

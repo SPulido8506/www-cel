@@ -74,7 +74,7 @@ const Empleados = () => {
   });
   return (
     <Content>
-      <h1>EMPLEADOS</h1>
+      <h1 >EMPLEADOS</h1>
       <a href="/empleados-add">
         <Button variant="contained" startIcon={<PersonAddIcon />}>
           Agregar empleado

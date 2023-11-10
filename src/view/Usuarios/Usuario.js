@@ -57,27 +57,9 @@ const UsuariosEdit = () => {
   useEffect(() => {
     getData();
   }, []);
-  const handleNombre = (event) => {
-    setNombre(event.target.value);
-  };
-  const handleemail = (event) => {
-    setemail(event.target.value);
-  };
-  const handlecontra = (event) => {
-    setcontra(event.target.value);
-  };
-  const handletipou = (event) => {
-    settipou(event.target.value);
-  };
+  
   const handleSubmit = (event) => {
-    let usuarios = {
-      nombre: nombre,
-      email: email,
-      contrasenia: contra,
-      tipoU: tipou
-    };
-    console.log(usuarios);
-    UsuarioService.updateUsuario(usuarios, routeParams.id);
+    
     navigate("/usuarios");
   };
   return (
@@ -96,7 +78,7 @@ const UsuariosEdit = () => {
                 label="Nombre"
                 id="nombre"
                 value={nombre}
-                onChange={handleNombre}
+                InputProps={{ readOnly: true }}
               />
             </FormControl>
           </Grid>          
@@ -109,44 +91,21 @@ const UsuariosEdit = () => {
                 label="Email"
                 id="email"                
                 value={email}
-                onChange={handleemail}
+                InputProps={{ readOnly: true }}
               />
             </FormControl>
           </Grid>          
           <Grid item xs={4}></Grid>
-          <Grid item xs={4}></Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth>
-              <TextField
-                fullWidth
-                type="password"
-                label="Constraseña"
-                id="escolaridad"
-                onChange={handlecontra}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}></Grid>
           <Grid item xs={4}></Grid> 
           <Grid item xs={4}>  
           <FormControl fullWidth>
-              <InputLabel id="sexos">Tipo usuario</InputLabel>
-              <Select
-                labelId="sexo"
-                id="sexo"
-                name="sexo"
-                onChange={handletipou}
-              >
-                <MenuItem key="1" value="RECURSOS HUMANOS">
-                  RECURSOS HUMANOS
-                </MenuItem>
-                <MenuItem key="2" value="ADMINISTRACION">
-                  ADMINISTRACION
-                </MenuItem>
-                <MenuItem key="3" value="ADMINISTRADOR">
-                  ADMINISTRADOR
-                </MenuItem>
-                </Select>
+              <TextField
+                fullWidth
+                label="Tipo de Usuario"
+                id="tipoU"                
+                value={tipou}
+                InputProps={{ readOnly: true }}
+              />
             </FormControl>
             </Grid>
           <Grid item xs={4}></Grid>
@@ -158,7 +117,7 @@ const UsuariosEdit = () => {
               type="submit"
               onClick={handleSubmit}
             >
-              Guardar
+              VOLVER
             </Button>
           </Grid>
           <Grid item xs={5}></Grid>

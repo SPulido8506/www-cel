@@ -8,7 +8,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    text-align: center;
+    align-content: center;
     padding: 0 24px;
     border-bottom: 10px solid rgb(255, 255, 255);
     background-color: steelblue;
@@ -38,6 +38,7 @@ body {
   .navbar-left ul li a,
   .navbar-right ul li a {
     text-decoration: none;
+    align-items: center;
     color: white;
     border: 2px solid rgb(255, 255, 255);
     padding: 8px;

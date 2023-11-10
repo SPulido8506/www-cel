@@ -8,6 +8,7 @@ import Empleado from "../view/Empleados/Empleado";
 import Usuarios from "../view/Usuarios/Usuarios";
 import UsuariosAdd from "../view/Usuarios/UsuariosAdd";
 import UsuariosEdit from "../view/Usuarios/UsuariosEdit";
+import Usuario from "../view/Usuarios/Usuario";
 import Layout from "../containers/Layout";
 import "../styles/App.css";
 function App() {
@@ -15,7 +16,8 @@ function App() {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<Login />}></Route>
+          <Route path="/Home" element={<Home />}></Route>
           <Route path="/empleados" element={<Empleados />}></Route>
           <Route path="/empleados-add" element={<EmpleadosAdd />}></Route>
           <Route path="/empleados-edit/:id" element={<EmpleadosEdit />}></Route>
@@ -23,6 +25,7 @@ function App() {
           <Route path="/usuarios" element={<Usuarios />}></Route>
           <Route path="/usuarios-add" element={<UsuariosAdd />}></Route>
           <Route path="/usuarios-edit/:id" element={<UsuariosEdit />}></Route>
+          <Route path="/usuario/:id" element={<Usuario />}></Route>
         </Routes>
       </Layout>
     </BrowserRouter>

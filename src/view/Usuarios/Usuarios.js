@@ -43,7 +43,7 @@ const Usuarios = () => {
         <TableCell>{info.tipoU}</TableCell>
         <TableCell>
           <IconButton aria-label="people">
-            <a href={`empleado/${info.noempleado}`}>
+            <a href={`usuario/${info.idUsuario}`}>
               <People color="primary" />
             </a>
           </IconButton>
@@ -63,7 +63,7 @@ const Usuarios = () => {
               await getData();
             }}
           >
-            <DeleteIcon color="danger" />
+            <DeleteIcon color="error" />
           </IconButton>
         </TableCell>
       </TableRow>

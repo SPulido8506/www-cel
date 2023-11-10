@@ -1,10 +1,11 @@
 import React from "react";
 import "../styles/Header.css";
-const Header = () => {
+import { useNavigate } from "react-router-dom";
+const Header = ({location}) => {
   return (
     <nav>
       {/* <img src="./icons/icon_menu.svg" alt="menu" className="menu" /> */}
-      <div className="navbar-left">
+      <div className="navbar-right">
         {/* <img src="./logos/logo_yard_sale.svg" alt="logo" className="logo" /> */}
         <ul>
           <li>
@@ -15,6 +16,9 @@ const Header = () => {
           </li>
           <li>
             <a href="/usuarios">Usuarios</a>
+          </li>
+          <li>
+            <a href="/">Logout</a>
           </li>
         </ul>
       </div>
