@@ -61,10 +61,10 @@ const EmpleadosAdd = () => {
   const [telefono, settelefono] = useState("");
   const [email, setemail] = useState("");
   const [estatus, setestatus] = useState("");
-  const [tipoe, settipoe] = useState("");  
+  const [tipoe, settipoe] = useState("");   
   const navigate = useNavigate();
   const handlefechaen = (event) => {
-    this.setFechaen(event.target.value);
+    setFechaen(event.target.value);
   };
   const handleNombre = (event) => {
     setNombre(event.target.value);
@@ -134,43 +134,49 @@ const EmpleadosAdd = () => {
   };
   const handleSubmit = (event) => {
     let empleados = {
-      fechaent: this.state.fechaent,
-      nombre: this.state.nombre,
-      apellidoP: this.state.apellidoP,
-      apellidoM: this.state.apellidoM,
-      fechan: this.state.fechan,
-      sexo: this.state.sexo,
-      estadoc: this.state.estadoc,
-      escolaridad: this.state.escolaridad,
-      nacimiento: this.state.nacimiento,
-      calle: this.state.calle,
-      numero: this.state.numero,
-      colonia: this.state.colonia,
-      ciudad: this.state.ciudad,
-      estado: this.state.estado,
-      curp: this.state.curp,
-      rfc: this.state.rfc,
-      nss: this.state.nss,
-      departamento: this.state.departamento,
-      puesto: this.state.puesto,
-      telefono: this.state.telefono,
-      email: this.state.email,
-      estatus: this.estate.estatus,
-      tipoe: this.estate.tipoe
+      fecha_ent: fechaent,
+      nombre: nombre,
+      apellid_p: apPaterno,
+      apellido_m: apMaterno,
+      fecha_nac: fechan,
+      sexo: sexo,
+      estado_c: estadoc,
+      escolaridad: escolaridad,
+      lugar_nac: nacimiento,
+      calle: calle,
+      numero: parseInt(numero),
+      colonia: colonia,
+      ciudad: ciudad,
+      estado: estado,
+      curp: curp,
+      rfc: rfc,
+      nss: nss,
+      departamento: departamento,
+      puesto: puesto,
+      telefono: telefono,
+      mail: email,
+      estatus: estatus,
+      tipo_e: tipoe
     };
     console.log(empleados);
     EmpleadoService.createEmpleado(empleados);
+    navigate("/empleados");
   };
   return (
     <Content>
-      <form>
+     
         <h1>ALTA DE EMPLEADOS</h1>
         <Grid container spacing={2}>
         <Grid item xs={1}></Grid>
           <Grid item xs={2}>
             <FormControl fullWidth>
               <label>Fecha de entrada:</label>
-              <DatePicker selected={fechaent}  onChange={setFechaen}/>
+              <input
+          type="date"
+          value={fechaent}
+          onChange={handlefechaen}
+          
+        />
             </FormControl>
           </Grid>
           <Grid item xs={9}></Grid>
@@ -211,25 +217,25 @@ const EmpleadosAdd = () => {
           <Grid item xs={2}>
           <FormControl fullWidth>
             <label>Fecha de Nacimiento:</label>
-              <DatePicker selected={fechan} onChange={setfechan}/>
+              <input type="date" value={fechan} onChange={handlefechan} />
             </FormControl>
           </Grid>
           <Grid item xs={2}>
             <FormControl fullWidth>
-              <InputLabel id="sexo">Sexo</InputLabel>
+              <InputLabel id="sexos">Sexo</InputLabel>
               <Select
                 labelId="sexo"
                 id="sexo"
                 name="sexo"
-                onSelect={handlesexo}
+                onChange={handlesexo}
               >
-                <MenuItem key="M" value="MASCULINO">
+                <MenuItem key="1" value="MASCULINO">
                   MASCULINO
                 </MenuItem>
-                <MenuItem key="F" value="FEMENINO">
+                <MenuItem key="2" value="FEMENINO">
                   FEMENINO
                 </MenuItem>
-                <MenuItem key="O" value="OTRO">
+                <MenuItem key="3" value="OTRO">
                   OTRO
                 </MenuItem>
                 </Select>
@@ -237,23 +243,23 @@ const EmpleadosAdd = () => {
           </Grid>
           <Grid item xs={2}>
             <FormControl fullWidth>
-              <InputLabel id="estadoc">Estado civil</InputLabel>
+              <InputLabel id="estadoci">Estado civil</InputLabel>
               <Select
                 labelId="estadoc"
                 id="estadoc"
                 name="estadoc"
-                onSelect={handleestadoc}
+                onChange={handleestadoc}
               >
-                <MenuItem key="C" value="CASADO">
+                <MenuItem key="1" value="CASADO">
                   Casado
                 </MenuItem>
-                <MenuItem key="S" value="SOLTERO">
+                <MenuItem key="2" value="SOLTERO">
                   Soltero
                 </MenuItem>
-                <MenuItem key="D" value="DIVORCIADO(A)">
+                <MenuItem key="3" value="DIVORCIADO(A)">
                   DIVORCIADO(A)
                 </MenuItem>
-                <MenuItem key="U" value="UNION LIBRE">
+                <MenuItem key="4" value="UNION LIBRE">
                   UNION LIBRE
                 </MenuItem>
                 </Select>
@@ -280,7 +286,7 @@ const EmpleadosAdd = () => {
               />
             </FormControl>
           </Grid>
-          <Grid itmen xs={5}></Grid>
+          <Grid item xs={5}></Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={3}>
             <FormControl fullWidth>
@@ -369,65 +375,65 @@ const EmpleadosAdd = () => {
           <Grid item xs={1}></Grid>
           <Grid item xs={3}>
             <FormControl fullWidth>
-              <InputLabel id="departamento">Departamento</InputLabel>
+              <InputLabel id="departamentos">Departamento</InputLabel>
               <Select
                 labelId="departamento"
                 id="departamento"
                 name="departamento"
-                onSelect={handledepartamento}
+                onChange={handledepartamento}
               >
-                <MenuItem key="1" value="Contabilidad">
-                  Contabilidad
+                <MenuItem key="1" value="CONTABILIDAD">
+                  CONTABILIDAD
                 </MenuItem>
-                <MenuItem key="2" value="Recursos Humanos">
-                  Recursos Humanos
+                <MenuItem key="2" value="RECURSOS HUMANOS">
+                  RECURSOS HUMANOS
                 </MenuItem>
-                <MenuItem key="3" value="Produccion">
-                  Producción
+                <MenuItem key="3" value="PRODUCCION">
+                  PRODUCCIÓN
                 </MenuItem>
-                <MenuItem key="4" value="Calidad">
-                  Calidad
+                <MenuItem key="4" value="CALIDAD">
+                  CALIDAD
                 </MenuItem>
-                <MenuItem key="5" value="Sistemas">
-                  Sistemas
+                <MenuItem key="5" value="SISTEMAS">
+                  SISTEMAS
                 </MenuItem>
-                <MenuItem key="6" value="Almacen">
-                  Almacen
+                <MenuItem key="6" value="ALMACEN">
+                  ALMACEN
                 </MenuItem>
-                <MenuItem key="7" value="Ventas">
-                  Ventas
+                <MenuItem key="7" value="VENTAS">
+                  VENTAS
                 </MenuItem>
-                <MenuItem key="8" value="Vigilancia">
-                 Vigilancia
+                <MenuItem key="8" value="VIGILANCIA">
+                 VIGILANCIA
                 </MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={3}>
             <FormControl fullWidth>
-              <InputLabel id="puesto">Puesto</InputLabel>
+              <InputLabel id="puestos">Puesto</InputLabel>
               <Select
                 labelId="puesto"
                 id="puesto"
                 name="puesto"
-                onSelect={handlepuesto}
+                onChange={handlepuesto}
               >
-                <MenuItem key="1" value="Auxiliar">
-                  Auxiliar
+                <MenuItem key="1" value="AUXILIAR">
+                  AUXILIAR
                 </MenuItem>
-                <MenuItem key="2" value="Jefe">
-                  Jefe
+                <MenuItem key="2" value="JEFE">
+                  JEFE
                 </MenuItem>
-                <MenuItem key="3" value="Gerente">
-                  Gerente
+                <MenuItem key="3" value="GERENTE">
+                  GERENTE
                 </MenuItem>
               </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={5}></Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={2}>
-            <FormControl fullWidth>
+              </FormControl>
+              </Grid>
+              <Grid item xs={5}></Grid>
+              <Grid item xs={1}></Grid>
+              <Grid item xs={2}>
+              <FormControl fullWidth>
               <TextField
                 fullWidth
                 label="Telefono(10 díg)"
@@ -448,21 +454,21 @@ const EmpleadosAdd = () => {
           </Grid>
           <Grid item xs={2}>
             <FormControl fullWidth>
-              <InputLabel id="estatus">Estatus</InputLabel>
+              <InputLabel id="estatu">Estatus</InputLabel>
               <Select
                 labelId="estatus"
                 id="estatus"
                 name="estatus"
-                onSelect={handleestatus}
+                onChange={handleestatus}
               >
-                <MenuItem key="1" value="Activo">
-                  Activo
+                <MenuItem key="1" value="ACTIVO">
+                  ACTIVO
                 </MenuItem>
-                <MenuItem key="2" value="Inactivo">
-                  Inactivo
+                <MenuItem key="2" value="INACTIVO">
+                  INACTIVO
                 </MenuItem>
-                <MenuItem key="3" value="Licencia">
-                  Licencia
+                <MenuItem key="3" value="LICENCIA">
+                  LICENCIA
                 </MenuItem>
               </Select>
             </FormControl>
@@ -471,12 +477,12 @@ const EmpleadosAdd = () => {
           <Grid item xs={1}></Grid>          
           <Grid item xs={4}>
             <FormControl fullWidth>
-              <InputLabel id="tipoe">Tipo Empleado</InputLabel>
+              <InputLabel id="tipoem">Tipo Empleado</InputLabel>
               <Select
                 labelId="tipoe"
                 id="tipoe"
                 name="tipoe"
-                onSelect={handletipoe}
+                onChange={handletipoe}
               >
                 <MenuItem key="1" value="QUINCENAL">
                   QUINCENAL
@@ -510,7 +516,7 @@ const EmpleadosAdd = () => {
           </Grid>
           <Grid item xs={5}></Grid>
         </Grid>
-      </form>
+      
     </Content>
   );
 };

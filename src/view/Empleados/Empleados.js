@@ -5,6 +5,7 @@ import EmpleadoService from "../../services/EmpleadoService";
 import EmpleadosEdit from "../Empleados/EmpleadosEdit";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import People from "@mui/icons-material/Book"
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -16,6 +17,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useHistory } from "react-router";
+import { red } from "@mui/material/colors";
 const Empleados = () => {
   const [empleado, setEmpleado] = useState([]);
   // const [id, setId] = useState("");
@@ -43,6 +45,13 @@ const Empleados = () => {
         <TableCell>{info.puesto}</TableCell>
         <TableCell>{info.estatus}</TableCell>
         <TableCell>
+          <IconButton aria-label="people">
+            <a href={`empleado/${info.noempleado}`}>
+              <People color="primary" />
+            </a>
+          </IconButton>
+        </TableCell>
+        <TableCell>
           <IconButton aria-label="editar">
             <a href={`empleados-edit/${info.noempleado}`}>
               <EditIcon color="primary" />
@@ -57,7 +66,7 @@ const Empleados = () => {
               await getData();
             }}
           >
-            <DeleteIcon color="danger" />
+            <DeleteIcon color="error" />
           </IconButton>
         </TableCell>
       </TableRow>
@@ -83,6 +92,7 @@ const Empleados = () => {
                 <TableCell>Departamento</TableCell>
                 <TableCell>Puesto</TableCell>
                 <TableCell>Estatus</TableCell>
+                <TableCell>Consultar</TableCell>
                 <TableCell>Editar</TableCell>
                 <TableCell>Borrar</TableCell>
               </TableRow>
