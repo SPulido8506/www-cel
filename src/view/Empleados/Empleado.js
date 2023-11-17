@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import axios from "axios";
 import EmpleadoService from "../../services/EmpleadoService";
 import Grid from "@mui/material/Grid";
+import Layout from "../../containers/Layout";
 import {
     FormControl,
     FormLabel,
@@ -116,6 +117,7 @@ const EmpleadoEdit = (id) => {
     navigate("/empleados");
   };
   return (
+    <Layout>
    <Content>
      
         <h1>INFORMACION DEL EMPLEADO</h1>
@@ -358,6 +360,7 @@ const EmpleadoEdit = (id) => {
         </Grid>
       
     </Content>
+    </Layout>
   );
 };
 export default EmpleadoEdit;

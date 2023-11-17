@@ -1,17 +1,18 @@
 import React from "react";
 import "../styles/Header.css";
-import { useNavigate } from "react-router-dom";
 const Header = ({ currentForm, onSwitchForm }) => {
   return (
     <nav>
+      {/* <img src="./icons/icon_menu.svg" alt="menu" className="menu" /> */}
       <div className="navbar-left">
-         <ul>
+         
+         <ul>       
            <li>
-             <a href="/empleados"><span>Empleados</span></a>
+             <a href="/home">Home</a>
            </li>
            <li>
-             <a href="/usuarios">Usuarios</a>
-           </li>
+             <a href="/empleados">Empleados</a>
+           </li>           
          </ul>
        </div>
       <div className="navbar-right">

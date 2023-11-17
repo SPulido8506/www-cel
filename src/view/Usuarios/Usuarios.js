@@ -5,6 +5,7 @@ import UsuarioService from "../../services/UsuarioService";
 import UsuarioEdit from "../Usuarios/UsuariosEdit";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Layout from "../../containers/LayoutU";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import People from "@mui/icons-material/Book"
@@ -31,6 +32,7 @@ const Usuarios = () => {
   }, []);
   const DisplayData = usuario.map((info) => {
     return (
+      
       <TableRow
         key={info.idUsuario}
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -70,6 +72,7 @@ const Usuarios = () => {
     );
   });
   return (
+    <Layout>
     <Content>
       <h1>USUARIOS</h1>
       <a href="/usuarios-add">
@@ -97,6 +100,7 @@ const Usuarios = () => {
         </TableContainer>
       </div>
     </Content>
+    </Layout>
   );
 };
 export default Usuarios;

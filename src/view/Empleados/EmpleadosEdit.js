@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Content from "../../components/Content";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Layout from "../../containers/Layout";
 import axios from "axios";
 import EmpleadoService from "../../services/EmpleadoService";
 import Grid from "@mui/material/Grid";
@@ -179,6 +180,7 @@ const EmpleadoEdit = (id) => {
     navigate("/empleados");
   };
   return (
+    <Layout>
     <Content>
      
         <h1>EDITAR INFORMACION DEL EMPLEADO</h1>
@@ -508,6 +510,7 @@ const EmpleadoEdit = (id) => {
         </Grid>
       
     </Content>
+    </Layout>
   );
 };
 export default EmpleadoEdit;

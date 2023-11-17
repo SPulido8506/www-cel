@@ -21,6 +21,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useParams } from "react-router-dom";
+import Layout from "../../containers/LayoutU";
 // LIBRERIAS FORMULARIOS
 import { useFormControl } from "@mui/material/FormControl";
 import UsuarioService from "../../services/UsuarioService";
@@ -81,6 +82,7 @@ const UsuariosEdit = () => {
     navigate("/usuarios");
   };
   return (
+    <Layout>   
     <Content>
      
         <h1 >EDITAR DE USUARIOS</h1>
@@ -164,6 +166,7 @@ const UsuariosEdit = () => {
         </Grid>
       
     </Content>
+    </Layout> 
   );
 };
 export default UsuariosEdit;

@@ -16,5 +16,16 @@ class UsuarioService {
   deleteUsuario(idusuario) {
     return axios.delete(USUARIO_API_BASE_URL + "/" + idusuario);
   }
+  async getLogin(correo, contrasenia) {
+    console.log(correo);
+    console.log(contrasenia);
+    try {
+      const response = await axios.get(`${USUARIO_API_BASE_URL}?filter[where][email]=${correo}&filter[where][contrasenia]=${contrasenia}`);
+      const user = response.data;
+      return user;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 export default new UsuarioService();

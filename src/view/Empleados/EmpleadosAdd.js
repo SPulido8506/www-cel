@@ -19,6 +19,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Layout from "../../containers/Layout";
 import Paper from "@mui/material/Paper";
 // LIBRERIAS FORMULARIOS
 import { useFormControl } from "@mui/material/FormControl";
@@ -163,6 +164,7 @@ const EmpleadosAdd = () => {
     navigate("/empleados");
   };
   return (
+    <Layout>
     <Content>
      
         <h1>ALTA DE EMPLEADOS</h1>
@@ -518,6 +520,7 @@ const EmpleadosAdd = () => {
         </Grid>
       
     </Content>
+    </Layout>
   );
 };
 export default EmpleadosAdd;

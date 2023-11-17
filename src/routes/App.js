@@ -9,12 +9,10 @@ import Usuarios from "../view/Usuarios/Usuarios";
 import UsuariosAdd from "../view/Usuarios/UsuariosAdd";
 import UsuariosEdit from "../view/Usuarios/UsuariosEdit";
 import Usuario from "../view/Usuarios/Usuario";
-import Layout from "../containers/Layout";
 import "../styles/App.css";
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route path="/Home" element={<Home />}></Route>
@@ -27,7 +25,6 @@ function App() {
           <Route path="/usuarios-edit/:id" element={<UsuariosEdit />}></Route>
           <Route path="/usuario/:id" element={<Usuario />}></Route>
         </Routes>
-      </Layout>
     </BrowserRouter>
   );
 }

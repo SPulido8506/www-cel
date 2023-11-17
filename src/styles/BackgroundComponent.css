@@ -1,0 +1,6 @@
+.background-container {    
+    background-image: url('../images/logof.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }

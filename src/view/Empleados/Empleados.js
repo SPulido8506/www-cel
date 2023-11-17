@@ -16,6 +16,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Layout from "../../containers/Layout";
 import { useHistory } from "react-router";
 import { red } from "@mui/material/colors";
 const Empleados = () => {
@@ -73,6 +74,7 @@ const Empleados = () => {
     );
   });
   return (
+    <Layout>
     <Content>
       <h1 >EMPLEADOS</h1>
       <a href="/empleados-add">
@@ -102,6 +104,7 @@ const Empleados = () => {
         </TableContainer>
       </div>
     </Content>
+    </Layout>
   );
 };
 export default Empleados;

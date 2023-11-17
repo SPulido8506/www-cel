@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Content from "../components/Content";
-import axios from "axios";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import Content from "../components/Content2";
+import Layout from "../containers/Layout2";
 // Librerias GRID
 import { styled } from "@mui/material/styles";
+import Swal from 'sweetalert2';
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
@@ -38,12 +37,20 @@ import {
   Button,
 } from "@mui/material";
 import { Form } from "react-router-dom";
-const EmpleadosAdd = () => {
+const Login = () => {
   const [nombre, setNombre] = useState("");
   const [email, setemail] = useState("");  
   const [contra, setcontra] = useState("");
   const [tipou, settipou] = useState("");   
   const navigate = useNavigate();
+  function Error(mensaje) {
+    Swal.fire({
+        title: '¡Error!',
+        text: mensaje,
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+    });
+}
   const handleNombre = (event) => {
     setNombre(event.target.value);
   };
@@ -53,37 +60,37 @@ const EmpleadosAdd = () => {
   const handlecontra = (event) => {
     setcontra(event.target.value);
   };
-  const handletipou = (event) => {
-    settipou(event.target.value);
+  const handleSubmit = async() => {
+    const usuario1 = await  UsuarioService.getLogin(email,contra);
+    if (usuario1[0] === undefined){
+      Error('Correo o contraseña incorrecta')
+    }else{
+      navigate("/home");
+    }
+    
   };
-  const handleSubmit = (event) => {
-    let usuarios = {
-      nombre: nombre,
-      email: email,
-      contrasenia: contra,
-      tipoU: tipou
-    };
-    navigate("/home");
-  };
+  
   return (
-    <Content>
-     
-        <h1 >INICIA SESION PARA CONTINUAR</h1>
-        <Grid container spacing={2}>
-        <Grid item xs={1}></Grid>
-          
+    
+    <Layout>
+      <Content>
+        <div>        
+        <Grid container spacing={6.288}>
           <Grid item xs={12}></Grid>
           <Grid item xs={12}></Grid>
           <Grid item xs={12}></Grid>
           <Grid item xs={12}></Grid>
+          <Grid item xs={5}></Grid>
+          <h2 >INICIO DE SESION</h2>
           <Grid item xs={12}></Grid>
           <Grid item xs={4}></Grid>
           <Grid item xs={4}>
+            
             <FormControl fullWidth>
               <TextField
                 fullWidth
                 type="email"
-                label="Email"
+                label="Correo Electronico"
                 id="email"
                 onChange={handleemail}
               />
@@ -118,9 +125,12 @@ const EmpleadosAdd = () => {
             </Button>
           </Grid>
           <Grid item xs={5}></Grid>
+          <Grid item xs={12}></Grid>
         </Grid>
-      
-    </Content>
+        
+        </div>
+        </Content>
+    </Layout>
   );
 };
-export default EmpleadosAdd;
+export default Login;

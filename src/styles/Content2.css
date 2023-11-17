@@ -1,0 +1,8 @@
+.content2 {
+    height: 100%;
+    min-height: 528px;
+    padding: 0 24px;
+    background-image: url('../images/expe.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
